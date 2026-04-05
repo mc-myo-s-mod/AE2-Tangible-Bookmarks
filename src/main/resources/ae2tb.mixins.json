@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.myogoo.ae2tb.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "ae2tb.refmap.json",
+  "plugin": "me.myogoo.ae2tb.mixin.Plugin",
+  "mixins": [
+    "MEStorageMenuStorageMixin"
+  ],
+  "client": [
+    "emi.EmiConfigMixin",
+    "emi.EmiConfigScreenMixin",
+    "emi.EmiScreenManagerMixin",
+    "jei.JeiCombinedRecipeFocusSourceMixin",
+    "jei.JeiFocusInputHandlerMixin",
+    "rei.ReiScreenOverlayImplMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

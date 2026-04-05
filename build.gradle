@@ -131,6 +131,7 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    //mavenLocal()
     mavenCentral()
     maven {
         url = "https://modmaven.dev"
@@ -170,8 +171,8 @@ dependencies {
     minecraft fg.deobf("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly 'org.jetbrains:annotations:24.1.0'
 
-    compileOnly fg.deobf("appeng:appliedenergistics2-forge:${AE2_version}")
-    runtimeOnly fg.deobf("appeng:appliedenergistics2-forge:${AE2_version}")
+    implementation fg.deobf("appeng:appliedenergistics2-forge:${AE2_version}")
+    implementation fg.deobf("me.myogoo:myotus:${Myotus_version}")
 
     compileOnly fg.deobf("org.appliedenergistics:guideme:${guideME_version}:api")
     runtimeOnly fg.deobf("org.appliedenergistics:guideme:${guideME_version}")
@@ -218,6 +219,11 @@ tasks.named('processResources', ProcessResources).configure {
                              mod_authors         : mod_authors, mod_description: mod_description,]
 
     inputs.properties replaceProperties
+    dependsOn tasks.named('compileJava')
+
+    from(layout.buildDirectory.dir('tmp/compileJava')) {
+        include "${mod_id}.refmap.json"
+    }
 
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
         expand replaceProperties + [project: project]
@@ -226,6 +232,8 @@ tasks.named('processResources', ProcessResources).configure {
 
 // Example for how to get properties into the manifest for reading at runtime.
 tasks.named('jar', Jar).configure {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
     manifest {
         attributes(["Specification-Title"     : mod_id,
                     "Specification-Vendor"    : mod_authors,

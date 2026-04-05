@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ae2:item/advanced_card",
+    "layer1": "ae2tb:item/terminal_bookmark_interact_card"
+  }
+}

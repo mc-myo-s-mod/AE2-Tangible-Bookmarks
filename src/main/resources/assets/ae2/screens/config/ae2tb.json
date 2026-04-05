@@ -1,0 +1,33 @@
+{
+  "includes": [
+    "config.json"
+  ],
+  "text": {
+    "title": {
+      "position": {
+        "left": 8,
+        "top": 7
+      },
+      "text": {
+        "translate": "gui.ae2tb.config.title"
+      }
+    }
+  },
+  "widgets": {
+    "binding:pickup_single": {
+      "left": 10,
+      "top": 20,
+      "width": 180
+    },
+    "binding:pickup_set": {
+      "left": 10,
+      "top": 50,
+      "width": 180
+    },
+    "binding:picked_autocrafting": {
+      "left": 10,
+      "top": 80,
+      "width": 180
+    }
+  }
+}
