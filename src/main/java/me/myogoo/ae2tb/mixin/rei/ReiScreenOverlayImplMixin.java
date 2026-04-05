@@ -2,6 +2,7 @@ package me.myogoo.ae2tb.mixin.rei;
 
 import appeng.helpers.InventoryAction;
 import appeng.menu.me.common.MEStorageMenu;
+import com.mojang.blaze3d.platform.InputConstants;
 import me.myogoo.ae2tb.client.KeyBindings;
 import me.myogoo.ae2tb.integration.ae2.HandleInteraction;
 import me.shedaniel.rei.api.client.gui.widgets.Widget;
@@ -11,7 +12,6 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.settings.KeyConflictContext;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -73,8 +73,53 @@ public abstract class ReiScreenOverlayImplMixin {
         }
     }
 
+    @Inject(method = "keyPressed", at = @At(value = "TAIL"), remap = false, cancellable = true)
+    private void onKeyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> cir) {
+        var player = Minecraft.getInstance().player;
+        if (player == null) {
+            return;
+        }
+
+        if (!(player.containerMenu instanceof MEStorageMenu menu)) {
+            return;
+        }
+
+        var favoritesWidget = this.widgets.stream()
+                .filter(widget -> widget instanceof FavoritesListWidget)
+                .map(widget -> (FavoritesListWidget) widget)
+                .findFirst().orElse(null);
+        if (favoritesWidget == null) {
+            return;
+        }
+
+        ItemStack stack = favoritesWidget.getFocusedStack().cheatsAs().castValue();
+        if (stack == null || stack.isEmpty()) {
+            return;
+        }
+
+        if (ae2tb$isPressed(KeyBindings.PICKUP_SINGLE_ITEM, keyCode, scanCode)) {
+            HandleInteraction.sendPacket(menu, stack, InventoryAction.PICKUP_SINGLE);
+            cir.setReturnValue(true);
+            return;
+        }
+        if (ae2tb$isPressed(KeyBindings.PICKUP_SET_ITEM, keyCode, scanCode)) {
+            HandleInteraction.sendPacket(menu, stack, InventoryAction.SHIFT_CLICK);
+            cir.setReturnValue(true);
+            return;
+        }
+        if (ae2tb$isPressed(KeyBindings.PICKED_ITEM_AUTOCRAFTING, keyCode, scanCode)) {
+            HandleInteraction.sendPacket(menu, stack, InventoryAction.AUTO_CRAFT);
+            cir.setReturnValue(true);
+        }
+    }
+
     @Unique
     private boolean ae2tb$isClicked(KeyMapping keyMapping, int button) {
-        return keyMapping.matchesMouse(button) && keyMapping.getKeyModifier().isActive(KeyConflictContext.GUI);
+        return keyMapping.isActiveAndMatches(InputConstants.Type.MOUSE.getOrCreate(button));
+    }
+
+    @Unique
+    private boolean ae2tb$isPressed(KeyMapping keyMapping, int keyCode, int scanCode) {
+        return keyMapping.isActiveAndMatches(InputConstants.getKey(keyCode, scanCode));
     }
 }
