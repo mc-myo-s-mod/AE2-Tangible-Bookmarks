@@ -1,0 +1,25 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "me.myogoo.ae2tangiblebookmarks.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "ae2tangiblebookmarks.refmap.json",
+  "plugin": "me.myogoo.ae2tangiblebookmarks.mixin.Plugin",
+  "mixins": [
+    "MEStorageMenuStorageMixin",
+    "emi.EmiConfigMixin",
+    "emi.EmiScreenManagerMixin",
+    "jei.CombinedRecipeFocusSourceMixin",
+    "jei.FocusInputHandlerMixin"
+  ],
+  "client": [
+    "emi.EmiConfigScreenMixin",
+    "rei.ScreenOverlayImplMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
