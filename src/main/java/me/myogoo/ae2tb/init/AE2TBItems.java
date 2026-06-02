@@ -21,7 +21,7 @@ public final class AE2TBItems {
 
     private static <T extends Item> RegistryObject<T> registerItem(String name, Supplier<T> supplier) {
         var item = ITEMS.register(name, supplier);
-        MyotusAPI.creativeTabRegistrar().creativeTabItem(item);
+        MyotusAPI.REGISTER.creativeTabRegistrar().creativeTabItem(item);
         return item;
     }
 }
