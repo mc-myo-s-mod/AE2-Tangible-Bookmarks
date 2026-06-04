@@ -1,6 +1,5 @@
 package me.myogoo.ae2tb.mixin;
 
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.LoadingModList;
 import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 import org.objectweb.asm.tree.ClassNode;
@@ -59,8 +58,6 @@ public class Plugin implements IMixinConfigPlugin {
     }
 
     private boolean isLoaded(String modId) {
-        return ModList.get() != null
-                ? ModList.get().isLoaded(modId)
-                : LoadingModList.get().getMods().stream().map(ModInfo::getModId).anyMatch(modId::equals);
+        return LoadingModList.get().getMods().stream().map(ModInfo::getModId).anyMatch(modId::equals);
     }
 }
