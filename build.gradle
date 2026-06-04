@@ -77,8 +77,8 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    mavenLocal()
     mavenCentral()
+    mavenLocal()
     maven {
         url = "https://modmaven.dev"
         content {
