@@ -5,4 +5,4 @@
     - `allowBookmarkInteractionWithoutUpgrade`: removes upgrade card requirements.
 
 ## Versions
-- Updated Myotus to `19.0.9`.
+- Updated Myotus to `15.1.0`.
