@@ -1,11 +1,11 @@
 package me.myogoo.ae2tb.mixin.jei;
 
 import appeng.api.stacks.AmountFormat;
-import appeng.api.stacks.GenericStack;
 import appeng.menu.me.common.MEStorageMenu;
 import me.myogoo.ae2tb.client.ScreenContexts;
 import me.myogoo.ae2tb.config.AE2TBConfig;
 import me.myogoo.ae2tb.init.AE2TBItems;
+import me.myogoo.ae2tb.integration.jei.AE2TBJeiPlugin;
 import me.myogoo.myotus.menu.TerminalUpgradeHelper;
 import mezz.jei.common.util.ImmutableRect2i;
 import mezz.jei.gui.recipes.RecipesGui;
@@ -14,7 +14,6 @@ import mezz.jei.gui.overlay.ingredients.IngredientListSlot;
 import mezz.jei.gui.overlay.bookmarks.BookmarkOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -68,17 +67,7 @@ public class BookmarkOverlayAmountMixin {
             return;
         }
 
-        var optionalStack = element.getTypedIngredient().getItemStack();
-        if (optionalStack.isEmpty()) {
-            return;
-        }
-
-        ItemStack itemStack = optionalStack.get();
-        if (itemStack.isEmpty()) {
-            return;
-        }
-
-        var genericStack = GenericStack.fromItemStack(itemStack);
+        var genericStack = AE2TBJeiPlugin.toGenericStack(element.getTypedIngredient());
         if (genericStack == null) {
             return;
         }

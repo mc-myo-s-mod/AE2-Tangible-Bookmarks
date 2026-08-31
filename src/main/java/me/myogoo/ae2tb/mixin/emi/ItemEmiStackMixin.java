@@ -1,5 +1,6 @@
 package me.myogoo.ae2tb.mixin.emi;
 
+import appeng.api.integrations.emi.EmiStackConverters;
 import appeng.api.stacks.AmountFormat;
 import appeng.api.stacks.GenericStack;
 import appeng.menu.me.common.MEStorageMenu;
@@ -67,12 +68,7 @@ public abstract class ItemEmiStackMixin {
             return;
         }
 
-        var stack = stacks.get(0).getItemStack();
-        if (stack.isEmpty()) {
-            return;
-        }
-
-        var genericStack = GenericStack.fromItemStack(stack);
+        var genericStack = ae2tb$toGenericStack(stacks.get(0));
         if (genericStack == null) {
             return;
         }
@@ -88,6 +84,17 @@ public abstract class ItemEmiStackMixin {
                 return;
             }
         }
+    }
+
+    @Unique
+    private static GenericStack ae2tb$toGenericStack(EmiStack stack) {
+        for (var converter : EmiStackConverters.getConverters()) {
+            var genericStack = converter.toGenericStack(stack);
+            if (genericStack != null) {
+                return genericStack;
+            }
+        }
+        return null;
     }
 
     @Unique
