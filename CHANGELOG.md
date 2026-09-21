@@ -8,7 +8,7 @@ Loader-specific release notes live in each module's `CHANGELOG.md`; the release 
 - Updated Myotus to `26.0.0`.
 - Set the minimum compatible JEI version to `29.33.0.87`.
 
-## 19.1.3 (Minecraft 1.21.1)
+## 19.1.1 (Minecraft 1.21.1)
 
 ### Compatibility
 - Updated Myotus to `19.1.1`.

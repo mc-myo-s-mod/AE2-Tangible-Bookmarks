@@ -1,6 +1,6 @@
 # Changelog
 
-## 19.1.3 (Minecraft 1.21.1)
+## 19.1.1 (Minecraft 1.21.1)
 
 ### Compatibility
 - Updated Myotus to `19.1.1`.
