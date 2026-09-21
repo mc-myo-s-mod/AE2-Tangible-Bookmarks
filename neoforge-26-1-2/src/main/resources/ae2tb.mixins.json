@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.myogoo.ae2tb.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "plugin": "me.myogoo.ae2tb.mixin.Plugin",
+  "mixins": [
+    "MEStorageMenuStorageMixin"
+  ],
+  "client": [
+    "jei.BookmarkInputHandlerMixin",
+    "jei.BookmarkOverlayAmountMixin",
+    "jei.CombinedRecipeFocusSourceMixin",
+    "jei.FocusInputHandlerMixin",
+    "rei.ReiFavoriteAmountMixin",
+    "rei.ScreenOverlayImplMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
