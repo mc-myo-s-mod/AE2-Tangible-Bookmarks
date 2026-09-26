@@ -1,12 +1,12 @@
 package me.myogoo.ae2tb.mixin.jei;
 
 import appeng.api.stacks.AmountFormat;
+import appeng.client.integrations.jei.GenericEntryStackHelper;
 import appeng.menu.me.common.MEStorageMenu;
 import me.myogoo.ae2tb.client.ScreenContexts;
 import me.myogoo.ae2tb.config.AE2TBConfig;
 import me.myogoo.ae2tb.init.AE2TBItems;
-import me.myogoo.ae2tb.integration.jei.AE2TBJeiPlugin;
-import me.myogoo.myotus.menu.TerminalUpgradeHelper;
+import me.myogoo.myotus.api.MyotusAPI;
 import mezz.jei.common.util.ImmutableRect2i;
 import mezz.jei.gui.recipes.RecipesGui;
 import mezz.jei.gui.overlay.ingredients.IngredientGridWithNavigation;
@@ -68,7 +68,7 @@ public class BookmarkOverlayAmountMixin {
             return;
         }
 
-        var genericStack = AE2TBJeiPlugin.toGenericStack(element.getTypedIngredient());
+        var genericStack = GenericEntryStackHelper.ingredientToStack(element.getTypedIngredient());
         if (genericStack == null) {
             return;
         }
@@ -108,6 +108,6 @@ public class BookmarkOverlayAmountMixin {
         return AE2TBConfig.enableBookmarkAmountCounting()
                 && AE2TBConfig.showBookmarkAmounts()
                 && (AE2TBConfig.QoL()
-                || TerminalUpgradeHelper.hasUpgrade(menu, AE2TBItems.TERMINAL_BOOKMARK_INTERACT_CARD.get()));
+                || MyotusAPI.terminalUpgrades().hasUpgrade(menu, AE2TBItems.TERMINAL_BOOKMARK_INTERACT_CARD.get()));
     }
 }

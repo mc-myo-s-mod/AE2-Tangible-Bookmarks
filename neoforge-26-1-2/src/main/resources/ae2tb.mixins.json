@@ -8,6 +8,7 @@
     "MEStorageMenuStorageMixin"
   ],
   "client": [
+    "jei.IngredientGridWithNavigationInputMixin",
     "jei.BookmarkInputHandlerMixin",
     "jei.BookmarkOverlayAmountMixin",
     "jei.CombinedRecipeFocusSourceMixin",

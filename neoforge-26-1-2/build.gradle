@@ -50,9 +50,17 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(Integer.parseInt(project.java_version.toString()))
 
+sourceSets {
+    gameTest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+
 neoForge {
     // Specify the version of NeoForge to use.
     version = project.neo_version
+    addModdingDependenciesTo sourceSets.gameTest
 
     if (project.hasProperty('parchment_mappings_version') && project.hasProperty('parchment_minecraft_version')) {
         parchment {
@@ -127,6 +135,18 @@ neoForge {
         // but multi mod projects should define one per mod
         "${mod_id}" {
             sourceSet(sourceSets.main)
+        }
+        ae2tb_gametest {
+            sourceSet(sourceSets.gameTest)
+        }
+    }
+
+    runs {
+        mixinAuditClient {
+            client()
+            loadedMods = [mods.ae2tb, mods.ae2tb_gametest]
+            sourceSet = sourceSets.gameTest
+            systemProperty 'ae2tb.jeiMixinAudit', 'true'
         }
     }
 }

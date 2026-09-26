@@ -1,0 +1,16 @@
+modLoader = "javafml"
+loaderVersion = "[6,)"
+license = "GNU LGPL 3.0"
+
+[[mods]]
+modId = "ae2tb_gametest"
+version = "1.0.0"
+displayName = "AE2TB GameTests"
+description = "Test-only client audit mod for AE2 Tangible Bookmarks."
+
+[[dependencies.ae2tb_gametest]]
+modId = "ae2tb"
+type = "required"
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "CLIENT"

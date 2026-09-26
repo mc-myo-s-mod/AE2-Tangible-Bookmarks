@@ -5,8 +5,8 @@ import appeng.client.gui.WidgetContainer;
 import appeng.client.gui.widgets.AECheckbox;
 import me.myogoo.ae2tb.client.TranslateKey;
 import me.myogoo.ae2tb.config.AE2TBConfig;
+import me.myogoo.myotus.api.MyotusAPI;
 import me.myogoo.myotus.api.config.MyoConfigTabScreen;
-import me.myogoo.myotus.client.gui.widgets.KeyBindingButton;
 
 public class AE2TBConfigTab implements MyoConfigTabScreen {
     private AECheckbox showBookmarkAmountsCheckbox;
@@ -15,9 +15,12 @@ public class AE2TBConfigTab implements MyoConfigTabScreen {
     public void buildTab(WidgetContainer widget, AEBaseScreen<?> screen) {
         showBookmarkAmountsCheckbox = widget.addCheckbox("show_bookmark_amounts",
                 TranslateKey.SHOW_BOOKMARK_AMOUNTS.getTranslate(), this::save);
-        widget.add("binding:pickup_single", new KeyBindingButton(TranslateKey.PICKUP_SINGLE_ITEM.getTranslate(), keys -> {}));
-        widget.add("binding:pickup_set", new KeyBindingButton(TranslateKey.PICKUP_SET_ITEM.getTranslate(), keys -> {}));
-        widget.add("binding:picked_autocrafting", new KeyBindingButton(TranslateKey.PICKED_ITEM_AUTOCRAFTING.getTranslate(), keys -> {}));
+        widget.add("binding:pickup_single",
+                MyotusAPI.Client.Widgets.keyBindingButton(TranslateKey.PICKUP_SINGLE_ITEM.getTranslate(), keys -> {}));
+        widget.add("binding:pickup_set",
+                MyotusAPI.Client.Widgets.keyBindingButton(TranslateKey.PICKUP_SET_ITEM.getTranslate(), keys -> {}));
+        widget.add("binding:picked_autocrafting",
+                MyotusAPI.Client.Widgets.keyBindingButton(TranslateKey.PICKED_ITEM_AUTOCRAFTING.getTranslate(), keys -> {}));
         updateState();
     }
 

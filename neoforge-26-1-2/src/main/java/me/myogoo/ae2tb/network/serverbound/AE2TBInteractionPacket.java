@@ -9,7 +9,7 @@ import me.myogoo.ae2tb.AE2TB;
 import me.myogoo.ae2tb.config.AE2TBConfig;
 import me.myogoo.ae2tb.init.AE2TBItems;
 import me.myogoo.ae2tb.mixin.MEStorageMenuStorageMixin;
-import me.myogoo.myotus.menu.TerminalUpgradeHelper;
+import me.myogoo.myotus.api.MyotusAPI;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -46,7 +46,7 @@ public record AE2TBInteractionPacket(
     public void handleOnServer(ServerPlayer player) {
         if (player.containerMenu instanceof MEStorageMenu meStorageMenu) {
             if (!AE2TBConfig.QoL()
-                    && !TerminalUpgradeHelper.hasUpgrade(meStorageMenu, AE2TBItems.TERMINAL_BOOKMARK_INTERACT_CARD.get())) {
+                    && !MyotusAPI.terminalUpgrades().hasUpgrade(meStorageMenu, AE2TBItems.TERMINAL_BOOKMARK_INTERACT_CARD.get())) {
                 return;
             }
 

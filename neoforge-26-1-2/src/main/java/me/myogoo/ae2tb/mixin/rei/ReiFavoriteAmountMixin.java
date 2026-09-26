@@ -8,7 +8,7 @@ import appeng.menu.me.common.MEStorageMenu;
 import me.myogoo.ae2tb.client.ScreenContexts;
 import me.myogoo.ae2tb.config.AE2TBConfig;
 import me.myogoo.ae2tb.init.AE2TBItems;
-import me.myogoo.myotus.menu.TerminalUpgradeHelper;
+import me.myogoo.myotus.api.MyotusAPI;
 import me.shedaniel.rei.api.client.gui.compat.GuiGraphics;
 import me.shedaniel.rei.api.client.gui.screen.DisplayScreen;
 import me.shedaniel.rei.api.client.favorites.FavoriteEntry;
@@ -120,6 +120,6 @@ public abstract class ReiFavoriteAmountMixin {
         return AE2TBConfig.enableBookmarkAmountCounting()
                 && AE2TBConfig.showBookmarkAmounts()
                 && (AE2TBConfig.QoL()
-                || TerminalUpgradeHelper.hasUpgrade(menu, AE2TBItems.TERMINAL_BOOKMARK_INTERACT_CARD.get()));
+                || MyotusAPI.terminalUpgrades().hasUpgrade(menu, AE2TBItems.TERMINAL_BOOKMARK_INTERACT_CARD.get()));
     }
 }
