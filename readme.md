@@ -59,7 +59,7 @@ Tags matching the current module properties and their Myotus requirements are:
 | Target | Release tag | Myotus |
 | --- | --- | --- |
 | Forge 1.20.1 | `v1.20.1-15.1.0` | `15.1.0` |
-| NeoForge 1.21.1 | `v1.21.1-19.1.1` | `19.1.1` |
+| NeoForge 1.21.1 | `v1.21.1-19.1.4` | `19.1.1` |
 | NeoForge 26.1.2 | `v26.1.2-26.0.0` | `26.0.0` |
 
 The Myotus versions above are resolved from Maven Central by the module builds.
