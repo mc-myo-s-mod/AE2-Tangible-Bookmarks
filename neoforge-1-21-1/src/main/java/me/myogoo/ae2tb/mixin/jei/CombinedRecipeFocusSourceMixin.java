@@ -2,8 +2,8 @@ package me.myogoo.ae2tb.mixin.jei;
 
 import me.myogoo.ae2tb.client.KeyBindings;
 import mezz.jei.common.input.IInternalKeyMappings;
+import mezz.jei.common.input.UserInput;
 import mezz.jei.gui.input.CombinedRecipeFocusSource;
-import mezz.jei.gui.input.UserInput;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CombinedRecipeFocusSource.class)
 public class CombinedRecipeFocusSourceMixin {
     @Inject(
-            method = "isConflictingVanillaMouseButton(Lmezz/jei/gui/input/UserInput;Lmezz/jei/common/input/IInternalKeyMappings;)Z",
+            method = "isConflictingVanillaMouseButton(Lmezz/jei/common/input/UserInput;Lmezz/jei/common/input/IInternalKeyMappings;)Z",
             at = @At(value = "RETURN"),
             cancellable = true,
             require = 1,

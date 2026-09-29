@@ -13,7 +13,7 @@ Loader-specific release notes live in each module's `CHANGELOG.md`; the release 
 ### Compatibility
 - Updated Myotus to `19.1.1`.
 - Raised the minimum NeoForge version to `21.1.238`.
-- Set the minimum compatible JEI version to `19.42.0.379`.
+- Updated JEI to `19.57.0.446`; requires JEI `19.55.0.432` or newer.
 
 ## 15.1.0 (Minecraft 1.20.1)
 

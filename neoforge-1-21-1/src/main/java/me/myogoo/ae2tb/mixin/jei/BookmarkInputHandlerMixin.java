@@ -5,11 +5,11 @@ import appeng.menu.me.common.MEStorageMenu;
 import me.myogoo.ae2tb.client.KeyBindings;
 import me.myogoo.ae2tb.integration.ae2.HandleInteraction;
 import mezz.jei.common.input.IInternalKeyMappings;
+import mezz.jei.common.input.IUserInputHandler;
+import mezz.jei.common.input.UserInput;
+import mezz.jei.common.input.handlers.SameElementInputHandler;
 import mezz.jei.gui.input.CombinedRecipeFocusSource;
-import mezz.jei.gui.input.IUserInputHandler;
-import mezz.jei.gui.input.UserInput;
 import mezz.jei.gui.input.handlers.BookmarkInputHandler;
-import mezz.jei.gui.input.handlers.SameElementInputHandler;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.gui.screens.Screen;
 import org.spongepowered.asm.mixin.Final;
@@ -29,7 +29,7 @@ public class BookmarkInputHandlerMixin {
     private CombinedRecipeFocusSource focusSource;
 
     @Inject(
-            method = "handleUserInput(Lnet/minecraft/client/gui/screens/Screen;Lmezz/jei/gui/input/UserInput;Lmezz/jei/common/input/IInternalKeyMappings;)Ljava/util/Optional;",
+            method = "handleUserInput(Lnet/minecraft/client/gui/screens/Screen;Lmezz/jei/common/input/UserInput;Lmezz/jei/common/input/IInternalKeyMappings;)Ljava/util/Optional;",
             at = @At("HEAD"),
             cancellable = true,
             require = 1,
