@@ -20,6 +20,10 @@ public class AE2TBConfig {
         return CLIENT.showBookmarkAmounts.get();
     }
 
+    public static boolean showIngredientListAmounts() {
+        return CLIENT.showIngredientListAmounts.get();
+    }
+
     public static class Common {
         private final ModConfigSpec spec;
         public final ModConfigSpec.BooleanValue QoL;
@@ -30,13 +34,13 @@ public class AE2TBConfig {
 
             builder.push("upgrade");
             this.QoL = builder
-                    .comment("Enables QoL behavior without requiring the Terminal Bookmark Interact Card. When false, bookmark interaction and bookmark amount rendering require the upgrade card in the terminal upgrade slot.")
+                    .comment("Enables QoL behavior without requiring the Terminal Bookmark Interact Card. When false, bookmark interaction and storage amount rendering require the upgrade card in the terminal upgrade slot.")
                     .define("QoL", false);
             builder.pop();
 
             builder.push("performance");
             this.enableBookmarkAmountCounting = builder
-                    .comment("Allows AE2TB to look up AE storage amounts for recipe-viewer bookmark entries. Disable this on the server/common config to skip the bookmark amount lookup entirely if it causes performance issues.")
+                    .comment("Allows AE2TB to look up AE storage amounts for recipe-viewer bookmarks and ingredient lists. Disable this on the server/common config to skip amount lookups entirely if they cause performance issues.")
                     .define("enableBookmarkAmountCounting", true);
             builder.pop();
 
@@ -51,6 +55,7 @@ public class AE2TBConfig {
     public static class Client {
         private final ModConfigSpec spec;
         public final ModConfigSpec.BooleanValue showBookmarkAmounts;
+        public final ModConfigSpec.BooleanValue showIngredientListAmounts;
 
         Client() {
             var builder = new ModConfigSpec.Builder();
@@ -59,6 +64,9 @@ public class AE2TBConfig {
             this.showBookmarkAmounts = builder
                     .comment("Shows AE storage amounts on JEI/REI bookmark entries when the terminal supports bookmark amount rendering.")
                     .define("showBookmarkAmounts", true);
+            this.showIngredientListAmounts = builder
+                    .comment("Shows AE storage amounts in JEI's ordinary ingredient list when the terminal supports amount rendering. Does not enable ingredient-list interaction.")
+                    .define("showIngredientListAmounts", false);
             builder.pop();
 
             this.spec = builder.build();

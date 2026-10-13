@@ -31,6 +31,8 @@ By default, bookmark interaction and storage amount display require a Terminal B
 
 Toggle `display.showBookmarkAmounts` in `ae2tb-client.toml` or the AE2TB terminal configuration tab to show or hide amounts. Set `performance.enableBookmarkAmountCounting=false` in `ae2tb-common.toml` to disable amount lookups. These amount settings do not disable item interaction.
 
+Enable **Show ingredient list amounts** in the same tab, or set `display.showIngredientListAmounts=true`, to also display ME storage amounts in JEI/EMI's main ingredient list. This option is off by default and independent of bookmark amounts. It only changes the display; bookmark actions still apply to bookmarks. The common amount-counting setting controls both displays.
+
 Amounts remain visible on recipe-viewer screens while a supported terminal menu is open. They are hidden on GuideME screens.
 
 JEI and EMI amount display uses AE2's registered ingredient converters. REI amount display is limited to favorites that can be converted to an item stack.

@@ -23,6 +23,9 @@ Bookmark your frequently used items in JEI/EMI/REI and grab them instantly witho
 - Middle Click: Pick up a single item.
 - Shift + Middle Click: Pick up a full stack of items.
 - Ctrl + Middle Click: Open the Auto-crafting request window.
+- Optional ME storage amounts in JEI/EMI's main ingredient list, separately from bookmark amounts. Enable **Show ingredient list amounts** in the AE2TB config tab (off by default). Minecraft 26.1.2 supports this option in JEI only.
+
+Amount displays require the Terminal Bookmark Interact Card, unless `QoL` is enabled. The common `enableBookmarkAmountCounting` setting disables both bookmark and ingredient-list amount lookups.
 
 ## Description
 AE2 Tangible Bookmarks significantly improves the workflow between Applied Energistics 2 (AE2) and JE/EMI/REI
@@ -33,7 +36,7 @@ Normally, retrieving an item from the AE2 terminal requires searching for it by 
 
 This repository is a multi-module build:
 
-- `common` contains shared resources used by every loader module.
+- `common` contains shared resources and sources compiled separately by every loader module.
 - `forge-1-20-1` builds the Forge 1.20.1 artifact with Java 17.
 - `neoforge-1-21-1` builds the NeoForge 1.21.1 artifact with Java 21.
 - `neoforge-26-1-2` builds the NeoForge 26.1.2 artifact with its native Gradle 9 wrapper and Java 25.
@@ -49,6 +52,8 @@ gradlew.bat :neoforge-26-1-2:build --console=plain
 Run the root Gradle wrapper itself with Java 21; the modules keep separate Java toolchains for their target Minecraft versions (17, 21, and 25).
 
 `common` resources are copied into loader builds only when the loader module does not provide the same path. This keeps the Forge 1.20.1 texture override local while sharing the current texture with newer versions.
+
+Legacy public bookmark APIs (`BookmarkLayer`, `BookmarkSerializer`, `BookmarkDeserializer`, and `BookmarkEventHandler`) remain available with their existing behavior. `ScreenContexts.shouldShowBookmarkAmounts(Screen, Class<?>)` is deprecated and still delegates to `isTerminalOrRecipeViewerScreen(Screen, Class<?>)`; use the latter for either amount overlay. Sharing sources preserves the original package names and each loader's Java target.
 
 CI runs on pushes to `master`, pull requests targeting `master`, and manual dispatch. It builds all three Minecraft versions. New commits cancel superseded CI runs.
 

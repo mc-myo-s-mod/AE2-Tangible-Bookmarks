@@ -10,7 +10,7 @@
   "client": [
     "jei.IngredientGridWithNavigationInputMixin",
     "jei.BookmarkInputHandlerMixin",
-    "jei.BookmarkOverlayAmountMixin",
+    "jei.IngredientGridAmountMixin",
     "jei.CombinedRecipeFocusSourceMixin",
     "jei.FocusInputHandlerMixin",
     "rei.ReiFavoriteAmountMixin",

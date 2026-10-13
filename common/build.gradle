@@ -1,3 +1,6 @@
 plugins {
     id 'java-library'
 }
+
+// Minecraft-dependent common sources are compiled by each loader's own toolchain.
+sourceSets.main.java.setSrcDirs([])

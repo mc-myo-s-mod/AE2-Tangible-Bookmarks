@@ -134,6 +134,10 @@ neoForge {
     }
 
     runs {
+        gameTestServer {
+            loadedMods = [mods.ae2tb, mods.ae2tb_gametest]
+            sourceSet = sourceSets.gameTest
+        }
         mixinAuditClient {
             client()
             loadedMods = [mods.ae2tb, mods.ae2tb_gametest]

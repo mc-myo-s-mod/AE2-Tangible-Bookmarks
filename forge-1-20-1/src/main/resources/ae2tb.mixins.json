@@ -9,11 +9,10 @@
     "MEStorageMenuStorageMixin"
   ],
   "client": [
-    "emi.EmiFavoritesMixin",
     "emi.EmiScreenManagerMixin",
-    "emi.ItemEmiStackMixin",
+    "emi.EmiScreenSpaceAmountMixin",
     "jei.BookmarkInputHandlerMixin",
-    "jei.BookmarkOverlayAmountMixin",
+    "jei.IngredientGridAmountMixin",
     "jei.CombinedRecipeFocusSourceMixin",
     "jei.FocusInputHandlerMixin",
     "jei.IngredientGridWithNavigationInputMixin",

@@ -20,6 +20,10 @@ public class AE2TBConfig {
         return CLIENT.showBookmarkAmounts.get();
     }
 
+    public static boolean showIngredientListAmounts() {
+        return CLIENT.showIngredientListAmounts.get();
+    }
+
     public static class Common {
         private final ModConfigSpec spec;
         public final ModConfigSpec.BooleanValue QoL;
@@ -36,7 +40,7 @@ public class AE2TBConfig {
 
             builder.push("performance");
             this.enableBookmarkAmountCounting = builder
-                    .comment("Allows AE2TB to look up AE storage amounts for recipe-viewer bookmark entries. Disable this on the server/common config to skip the bookmark amount lookup entirely if it causes performance issues.")
+                    .comment("Allows AE2TB to look up AE storage amounts for recipe-viewer bookmarks and ingredient lists. Disable this on the server/common config to skip amount lookup entirely if it causes performance issues.")
                     .define("enableBookmarkAmountCounting", true);
             builder.pop();
 
@@ -51,6 +55,7 @@ public class AE2TBConfig {
     public static class Client {
         private final ModConfigSpec spec;
         public final ModConfigSpec.BooleanValue showBookmarkAmounts;
+        public final ModConfigSpec.BooleanValue showIngredientListAmounts;
 
         Client() {
             var builder = new ModConfigSpec.Builder();
@@ -59,6 +64,9 @@ public class AE2TBConfig {
             this.showBookmarkAmounts = builder
                     .comment("Shows AE storage amounts on JEI/EMI/REI bookmark entries when the terminal supports bookmark amount rendering.")
                     .define("showBookmarkAmounts", true);
+            this.showIngredientListAmounts = builder
+                    .comment("Shows AE storage amounts in the JEI/EMI ingredient list when the terminal supports amount rendering.")
+                    .define("showIngredientListAmounts", false);
             builder.pop();
 
             this.spec = builder.build();
