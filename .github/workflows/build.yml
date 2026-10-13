@@ -61,6 +61,17 @@ jobs:
             "${PREFIX}compileJava" "${PREFIX}runData" \
             "${PREFIX}build" \
             -Penable_et=false --build-cache --no-configuration-cache --no-daemon --console=plain
+      - name: Run server GameTests
+        env:
+          WRAPPER: ${{ matrix.wrapper }}
+          PROJECT: ${{ matrix.project }}
+          PREFIX: ${{ matrix.prefix }}
+        run: |
+          set -o pipefail
+          "$WRAPPER" --project-dir "$PROJECT" "${PREFIX}runGameTestServer" \
+            -PitemListMod=none -Penable_et=false -Penable_ae2wt=false \
+            --max-workers=2 --build-cache --no-configuration-cache --no-daemon --console=plain 2>&1 | tee ae2tb-gametest.log
+          grep -Fq "AE2TB stale/current container packet checks PASS" ae2tb-gametest.log
       - uses: actions/upload-artifact@v7
         with:
           name: AE2TB-${{ matrix.minecraft }}-build

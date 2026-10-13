@@ -13,6 +13,7 @@ import me.myogoo.myotus.client.gui.MyoIcon;
 
 public class AE2TBConfigTab implements MyoConfigTabScreen {
     private AECheckbox showBookmarkAmountsCheckbox;
+    private AECheckbox showIngredientListAmountsCheckbox;
 
     public static void initialize() {
         MyotusAPI.configTabs().registerTerminalConfigTab(new MyoConfigTab(
@@ -28,6 +29,8 @@ public class AE2TBConfigTab implements MyoConfigTabScreen {
     public void buildTab(WidgetContainer widget, AEBaseScreen<?> screen) {
         showBookmarkAmountsCheckbox = widget.addCheckbox("show_bookmark_amounts",
                 TranslateKey.SHOW_BOOKMARK_AMOUNTS.getTranslate(), this::save);
+        showIngredientListAmountsCheckbox = widget.addCheckbox("show_ingredient_list_amounts",
+                TranslateKey.SHOW_INGREDIENT_LIST_AMOUNTS.getTranslate(), this::save);
         widget.add("binding:pickup_single",
                 MyotusAPI.Client.Widgets.keyBindingButton(TranslateKey.PICKUP_SINGLE_ITEM.getTranslate(), keys -> {
                 }));
@@ -44,11 +47,17 @@ public class AE2TBConfigTab implements MyoConfigTabScreen {
         if (showBookmarkAmountsCheckbox != null) {
             showBookmarkAmountsCheckbox.setSelected(AE2TBConfig.showBookmarkAmounts());
         }
+        if (showIngredientListAmountsCheckbox != null) {
+            showIngredientListAmountsCheckbox.setSelected(AE2TBConfig.showIngredientListAmounts());
+        }
     }
 
     protected void save() {
         if (showBookmarkAmountsCheckbox != null) {
             AE2TBConfig.CLIENT.showBookmarkAmounts.set(showBookmarkAmountsCheckbox.isSelected());
+        }
+        if (showIngredientListAmountsCheckbox != null) {
+            AE2TBConfig.CLIENT.showIngredientListAmounts.set(showIngredientListAmountsCheckbox.isSelected());
         }
         AE2TBConfig.CLIENT.get().save();
         updateState();

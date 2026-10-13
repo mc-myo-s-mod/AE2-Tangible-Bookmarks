@@ -2,6 +2,11 @@
 
 Loader-specific release notes live in each module's `CHANGELOG.md`; the release workflow uses the selected module file.
 
+## Unreleased
+
+### Features
+- Added a config-tab option to show ME storage amounts in JEI/EMI's main ingredient list independently of bookmark amounts (disabled by default). Available for JEI on all supported versions and EMI on Minecraft 1.20.1 and 1.21.1.
+
 ## 26.0.0 (Minecraft 26.1.2)
 
 ### Compatibility

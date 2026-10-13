@@ -33,19 +33,21 @@ public record AE2TBInteractionPacket(
 
     public void handleOnServer(Supplier<NetworkEvent.Context> contextSupplier) {
         NetworkEvent.Context context = contextSupplier.get();
-        context.enqueueWork(() -> {
-            ServerPlayer player = context.getSender();
-            if (player != null && player.containerMenu instanceof MEStorageMenu menu) {
-                if (!AE2TBConfig.QoL()
-                        && !MyotusAPI.terminalUpgrades().hasUpgrade(menu, AE2TBItems.TERMINAL_BOOKMARK_INTERACT_CARD.get())) {
-                    return;
-                }
-
-                var menuMixin = (MEStorageMenuStorageMixin) menu;
-                var key = AEItemKey.of(itemStack);
-                menuMixin.callHandleNetworkInteraction(player, key, action);
-            }
-        });
+        context.enqueueWork(() -> handleOnServer(context.getSender()));
         context.setPacketHandled(true);
+    }
+
+    public void handleOnServer(ServerPlayer player) {
+        if (player != null && player.containerMenu instanceof MEStorageMenu menu
+                && menu.containerId == containerId) {
+            if (!AE2TBConfig.QoL()
+                    && !MyotusAPI.terminalUpgrades().hasUpgrade(menu, AE2TBItems.TERMINAL_BOOKMARK_INTERACT_CARD.get())) {
+                return;
+            }
+
+            var menuMixin = (MEStorageMenuStorageMixin) menu;
+            var key = AEItemKey.of(itemStack);
+            menuMixin.callHandleNetworkInteraction(player, key, action);
+        }
     }
 }

@@ -1,5 +1,7 @@
 package me.myogoo.ae2tb.mixin.rei;
 
+import appeng.api.integrations.rei.IngredientConverter;
+import appeng.api.integrations.rei.IngredientConverters;
 import appeng.api.stacks.AmountFormat;
 import appeng.api.stacks.GenericStack;
 import appeng.menu.me.common.MEStorageMenu;
@@ -97,9 +99,15 @@ public abstract class ReiFavoriteAmountMixin {
     }
 
     @Unique
-    private GenericStack ae2tb$toGenericStack(EntryStack<?> entryStack) {
+    private static GenericStack ae2tb$toGenericStack(EntryStack<?> entryStack) {
         if (entryStack == null || entryStack.isEmpty()) {
             return null;
+        }
+
+        for (var converter : IngredientConverters.getConverters()) {
+            if (converter.getIngredientType() == entryStack.getType()) {
+                return ae2tb$getStackFromIngredient(converter, entryStack);
+            }
         }
 
         ItemStack itemStack;
@@ -111,6 +119,12 @@ public abstract class ReiFavoriteAmountMixin {
         }
 
         return itemStack.isEmpty() ? null : GenericStack.fromItemStack(itemStack);
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Unique
+    private static GenericStack ae2tb$getStackFromIngredient(IngredientConverter converter, EntryStack<?> entryStack) {
+        return converter.getStackFromIngredient(entryStack);
     }
 
     @Unique

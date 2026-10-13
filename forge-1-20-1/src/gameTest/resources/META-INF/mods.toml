@@ -6,14 +6,14 @@ license = "GNU LGPL 3.0"
 modId = "ae2tb_client_probe"
 version = "1.0.0"
 displayName = "AE2TB Client Probe"
-description = "Development-only recipe-viewer mixin regression check."
+description = "Development-only packet and recipe-viewer regression checks."
 
 [[dependencies.ae2tb_client_probe]]
 modId = "ae2tb"
 mandatory = true
 versionRange = "[0,)"
 ordering = "AFTER"
-side = "CLIENT"
+side = "BOTH"
 
 [[dependencies.ae2tb_client_probe]]
 modId = "jei"

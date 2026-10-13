@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Added an opt-in terminal config checkbox to show AE storage amounts in the JEI/EMI ingredient list, independently of bookmark amounts.
+- Render visible list amounts using one AE key lookup map per grid draw; bookmark interactions remain unchanged.
+
 ## 15.1.0 (Minecraft 1.20.1)
 
 ### Fixes

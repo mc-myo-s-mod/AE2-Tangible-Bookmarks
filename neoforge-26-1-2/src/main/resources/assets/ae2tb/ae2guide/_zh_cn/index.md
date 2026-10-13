@@ -31,6 +31,8 @@ AE2 Tangible Bookmarks能将物品管理器模组（JEI/REI）的书签和AE2的
 
 通过 `ae2tb-client.toml` 中的 `display.showBookmarkAmounts` 或 AE2TB 终端配置页切换数量显示。将 `ae2tb-common.toml` 中的 `performance.enableBookmarkAmountCounting` 设为 `false` 可停用数量查询。这些数量设置不会禁用物品交互。
 
+在同一配置页启用普通物品列表数量显示，或设置 `display.showIngredientListAmounts=true`，即可在 JEI 的普通物品列表中显示 ME 存储量。此选项默认关闭，与书签数量显示独立。它只改变显示，不会将书签操作扩展到普通列表。公共数量查询设置同时控制这两种显示。
+
 支持的终端菜单保持打开时，包括切换到配方查看器页面后，仍可显示存储量。GuideME 页面中不显示这些数量。
 
 JEI 和 REI 通过 AE2 的转换机制支持物品和流体数量；自定义资源需要对应的转换器。此版本不支持 EMI。

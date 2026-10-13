@@ -33,7 +33,13 @@ repositories {
 }
 
 def loaderResourceDirs = [file('src/main/resources'), file('src/generated/resources')]
+def generatedCommonJavaDir = layout.buildDirectory.dir('generated/sources/ae2tbCommon/java')
 def generatedCommonResourcesDir = layout.buildDirectory.dir('generated/resources/ae2tbCommon')
+
+def syncAE2TBCommonJava = tasks.register('syncAE2TBCommonJava', Sync) {
+    from '../common/src/main/java'
+    into generatedCommonJavaDir
+}
 def syncAE2TBCommonResources = tasks.register('syncAE2TBCommonResources', Sync) {
     from '../common/src/main/resources'
     into generatedCommonResourcesDir
@@ -142,6 +148,10 @@ neoForge {
     }
 
     runs {
+        gameTestServer {
+            loadedMods = [mods.ae2tb, mods.ae2tb_gametest]
+            sourceSet = sourceSets.gameTest
+        }
         mixinAuditClient {
             client()
             loadedMods = [mods.ae2tb, mods.ae2tb_gametest]
@@ -151,7 +161,8 @@ neoForge {
     }
 }
 
-// Include shared and generated resources.
+// Include shared sources and generated resources.
+sourceSets.main.java.srcDir files(generatedCommonJavaDir).builtBy(syncAE2TBCommonJava)
 sourceSets.main.resources.srcDir files(generatedCommonResourcesDir).builtBy(syncAE2TBCommonResources)
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
@@ -210,6 +221,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 // this works with both building through Gradle and the IDE.
 sourceSets.main.resources.srcDir generateModMetadata
 // To avoid having to run "generateModMetadata" manually, make it run on every project reload
+neoForge.ideSyncTask syncAE2TBCommonJava
 neoForge.ideSyncTask syncAE2TBCommonResources
 neoForge.ideSyncTask generateModMetadata
 

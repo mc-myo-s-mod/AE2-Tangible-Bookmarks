@@ -69,6 +69,11 @@ minecraft {
         }
         gameTestServer {
             property 'forge.enabledGameTestNamespaces', mod_id
+            mods {
+                ae2tb_client_probe {
+                    source sourceSets.gameTest
+                }
+            }
         }
 
         data {

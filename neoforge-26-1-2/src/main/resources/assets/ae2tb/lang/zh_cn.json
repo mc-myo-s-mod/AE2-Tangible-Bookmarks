@@ -6,5 +6,6 @@
   "gui.ae2tb.config.title": "AE2 Tangible Bookmarks设置",
   "item.ae2tb.terminal_bookmark_interact_card": "终端书签交互卡",
   "item.ae2tb.terminal_bookmark_interact_card.desc": "可让终端与JEI/REI书签交互",
-  "gui.ae2tb.config.show_bookmark_amounts": "在书签中显示AE库存量"
+  "gui.ae2tb.config.show_bookmark_amounts": "在书签中显示AE库存量",
+  "gui.ae2tb.config.show_ingredient_list_amounts": "在物品列表中显示AE库存量"
 }
