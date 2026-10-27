@@ -10,10 +10,8 @@
   "client": [
     "emi.EmiScreenManagerMixin",
     "emi.EmiScreenSpaceAmountMixin",
-    "jei.BookmarkInputHandlerMixin",
+    "jei.IngredientCommandsMixin",
     "jei.IngredientGridAmountMixin",
-    "jei.CombinedRecipeFocusSourceMixin",
-    "jei.FocusInputHandlerMixin",
     "rei.ReiFavoriteAmountMixin",
     "rei.ScreenOverlayImplMixin"
   ],
