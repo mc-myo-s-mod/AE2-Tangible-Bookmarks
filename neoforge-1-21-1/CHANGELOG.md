@@ -5,6 +5,15 @@
 - Added an opt-in terminal config checkbox to show AE storage amounts in the JEI/EMI ingredient list, independently of bookmark amounts.
 - Render visible list amounts using one AE key lookup map per grid draw; bookmark interactions remain unchanged.
 
+## 19.1.5 (Minecraft 1.21.1)
+
+### Fixes
+- Fixed crashes with JEI's rewritten input and ingredient rendering in 19.64, preserving bookmark interactions and storage amount displays.
+
+### Compatibility
+- Requires JEI `19.64.0.455` or newer when JEI is installed.
+- Updated Myotus to the CurseForge release `19.1.2` and requires that version or newer.
+
 ## 19.1.4 (Minecraft 1.21.1)
 
 ### Compatibility

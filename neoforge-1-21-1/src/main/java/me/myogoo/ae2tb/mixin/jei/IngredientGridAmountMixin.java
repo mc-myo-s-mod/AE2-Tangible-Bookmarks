@@ -39,9 +39,9 @@ public abstract class IngredientGridAmountMixin {
     @Unique
     private static final float AE2TB_AMOUNT_SCALE = 0.65F;
 
-    @Inject(method = "drawContents(Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/GuiGraphics;II)V",
+    @Inject(method = "drawContents(Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/GuiGraphics;IIZ)V",
             at = @At("TAIL"), remap = false)
-    private void ae2tb$drawAmounts(Minecraft minecraft, GuiGraphics guiGraphics, int mouseX, int mouseY, CallbackInfo ci) {
+    private void ae2tb$drawAmounts(Minecraft minecraft, GuiGraphics guiGraphics, int mouseX, int mouseY, boolean drawSlotBackgrounds, CallbackInfo ci) {
         if (!(searchable ? AE2TBConfig.showIngredientListAmounts() : AE2TBConfig.showBookmarkAmounts())
                 || !ScreenContexts.isTerminalOrRecipeViewerScreen(minecraft.screen, RecipesGui.class)) {
             return;

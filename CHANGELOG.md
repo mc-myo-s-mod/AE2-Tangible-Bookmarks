@@ -7,6 +7,14 @@ Loader-specific release notes live in each module's `CHANGELOG.md`; the release 
 ### Features
 - Added a config-tab option to show ME storage amounts in JEI/EMI's main ingredient list independently of bookmark amounts (disabled by default). Available for JEI on all supported versions and EMI on Minecraft 1.20.1 and 1.21.1.
 
+## 19.1.5 (Minecraft 1.21.1)
+
+### Fixes
+- Fixed JEI 19.64 input and rendering compatibility so bookmarks and storage amounts work without crashing.
+
+### Compatibility
+- Requires JEI `19.64.0.455` or newer when installed and Myotus `19.1.2` or newer.
+
 ## 26.0.0 (Minecraft 26.1.2)
 
 ### Compatibility
