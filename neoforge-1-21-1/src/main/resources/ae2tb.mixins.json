@@ -11,6 +11,7 @@
     "emi.EmiScreenManagerMixin",
     "emi.EmiScreenSpaceAmountMixin",
     "jei.IngredientCommandsMixin",
+    "jei.IngredientFocusSourceInvoker",
     "jei.IngredientGridAmountMixin",
     "rei.ReiFavoriteAmountMixin",
     "rei.ScreenOverlayImplMixin"
