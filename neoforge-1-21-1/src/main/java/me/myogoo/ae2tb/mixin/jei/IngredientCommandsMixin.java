@@ -5,7 +5,6 @@ import appeng.menu.me.common.MEStorageMenu;
 import me.myogoo.ae2tb.client.KeyBindings;
 import me.myogoo.ae2tb.client.ScreenContexts;
 import me.myogoo.ae2tb.integration.ae2.HandleInteraction;
-import mezz.jei.common.input.IInternalKeyMappings;
 import mezz.jei.common.input.UserInput;
 import mezz.jei.common.input.interaction.IInputInteraction;
 import mezz.jei.common.input.interaction.InputAction;
@@ -32,10 +31,6 @@ public class IngredientCommandsMixin {
     @Shadow(remap = false)
     private IngredientFocusSource focusSource;
 
-    @Final
-    @Shadow(remap = false)
-    private IInternalKeyMappings keys;
-
     @Inject(method = "registerInputCommands(Lmezz/jei/gui/input/InputCommands;)V",
             at = @At("HEAD"), require = 1, expect = 1, remap = false)
     private void ae2tb$registerBookmarkCommands(InputCommands commands, CallbackInfo ci) {
@@ -61,7 +56,8 @@ public class IngredientCommandsMixin {
             return Optional.empty();
         }
 
-        return focusSource.getIngredientUnderMouse(input, keys)
+        return ((IngredientFocusSourceInvoker) focusSource)
+                .ae2tb$getIngredientUnderMouse(input.getMouseX(), input.getMouseY())
                 .filter(IClickableIngredientInternal::canClickToFocus)
                 .filter(target -> target.getElement().isVisible())
                 .filter(target -> target.getElement().getBookmark().isPresent())

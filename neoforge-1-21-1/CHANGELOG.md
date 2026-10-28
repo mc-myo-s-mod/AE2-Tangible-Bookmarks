@@ -9,6 +9,7 @@
 
 ### Fixes
 - Fixed crashes with JEI's rewritten input and ingredient rendering in 19.64, preserving bookmark interactions and storage amount displays.
+- Fixed JEI `19.70.0.460` compatibility without requiring a separate build for older supported JEI versions.
 
 ### Compatibility
 - Requires JEI `19.64.0.455` or newer when JEI is installed.

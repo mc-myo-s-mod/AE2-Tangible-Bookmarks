@@ -11,6 +11,7 @@ Loader-specific release notes live in each module's `CHANGELOG.md`; the release 
 
 ### Fixes
 - Fixed JEI 19.64 input and rendering compatibility so bookmarks and storage amounts work without crashing.
+- Fixed JEI `19.70.0.460` compatibility without requiring a separate build for older supported JEI versions.
 
 ### Compatibility
 - Requires JEI `19.64.0.455` or newer when installed and Myotus `19.1.2` or newer.
